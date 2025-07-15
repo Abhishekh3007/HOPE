@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Microscope, Building2,  Moon, Sun, MessageCircle, X, Send } from 'lucide-react';
+import { Heart, Microscope, Building2, Moon, Sun, MessageCircle, X, Send, Menu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -9,6 +10,7 @@ const App = () => {
     { type: 'bot', message: 'Hi! I\'m HopeBot 🦷✨ How can I help you today?' }
   ]);
   const [pricingPeriod, setPricingPeriod] = useState('monthly');
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -54,45 +56,61 @@ const App = () => {
       <div className="custom-cursor fixed w-5 h-5 rounded-full border-2 border-blue-400 bg-white/90 shadow-md pointer-events-none z-50" style={{boxShadow: '0 2px 8px 0 rgba(59,130,246,0.10)'}}></div>
       
       {/* Header */}
-      <header className="sticky top-0 z-40 backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="logo-container relative group">
-                <div className="flex items-center space-x-2">
-                  <div className="relative">
-                    <Heart className="w-8 h-8 text-cyan-400 animate-pulse" />
-                    <div className="absolute inset-0 w-8 h-8 rounded-full bg-cyan-400 opacity-20 animate-ping"></div>
-                  </div>
-                  <span className="text-2xl font-bold text-navy-800 dark:text-white tracking-wide">
-                    H.O.P.E
-                  </span>
-                </div>
-                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-300"></div>
+      <header className="sticky top-0 z-40 w-full">
+        <nav className="max-w-7xl mx-auto mt-4 px-2 sm:px-4 lg:px-8 rounded-2xl shadow-xl bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 backdrop-blur-md flex items-center justify-between py-3 transition-all duration-500 relative">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <div className="logo-container relative group flex items-center space-x-2">
+              <div className="relative">
+                <Heart className="w-8 h-8 text-cyan-400 animate-pulse" />
+                <div className="absolute inset-0 w-8 h-8 rounded-full bg-cyan-400 opacity-20 animate-ping"></div>
               </div>
+              <span className="text-2xl font-bold text-navy-800 dark:text-white tracking-wide drop-shadow-lg">
+                H.O.P.E
+              </span>
             </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="nav-link text-gray-700 dark:text-gray-300 hover:text-cyan-400 transition-colors duration-300">Home</a>
-              <a href="#features" className="nav-link text-gray-700 dark:text-gray-300 hover:text-cyan-400 transition-colors duration-300">Features</a>
-              <a href="#pricing" className="nav-link text-gray-700 dark:text-gray-300 hover:text-cyan-400 transition-colors duration-300">Pricing</a>
-              <a href="#use-cases" className="nav-link text-gray-700 dark:text-gray-300 hover:text-cyan-400 transition-colors duration-300">Use Cases</a>
-              <a href="#contact" className="nav-link text-gray-700 dark:text-gray-300 hover:text-cyan-400 transition-colors duration-300">Contact</a>
-            </div>
-
-            <div className="flex items-center space-x-4">
+          </div>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            <a href="#home" className="nav-link px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300">Home</a>
+            <a href="#features" className="nav-link px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300">Features</a>
+            <a href="#pricing" className="nav-link px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300">Pricing</a>
+            <a href="#use-cases" className="nav-link px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300">Use Cases</a>
+            <a href="#contact" className="nav-link px-3 py-2 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300">Contact</a>
+            <Link to="/products" className="nav-link px-3 py-2 rounded-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-md hover:from-blue-500 hover:to-cyan-400 transition-all duration-300">Our Products</Link>
+          </div>
+          {/* Mobile Nav Toggle */}
+          <div className="flex items-center md:hidden">
+            <button onClick={() => setNavOpen(!navOpen)} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-cyan-200 dark:hover:bg-cyan-800 shadow transition-colors duration-300 focus:outline-none">
+              <Menu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+            </button>
+          </div>
+          {/* Dark Mode Toggle */}
+          <div className="hidden md:flex items-center space-x-2 ml-4">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-cyan-200 dark:hover:bg-cyan-800 shadow transition-colors duration-300"
+            >
+              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+          </div>
+          {/* Mobile Nav Dropdown */}
+          {navOpen && (
+            <div className="absolute top-full left-0 w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 rounded-b-2xl shadow-xl flex flex-col items-center py-4 space-y-2 md:hidden animate-fadeInUp z-50">
+              <a href="#home" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Home</a>
+              <a href="#features" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Features</a>
+              <a href="#pricing" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Pricing</a>
+              <a href="#use-cases" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Use Cases</a>
+              <a href="#contact" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg text-gray-700 dark:text-gray-200 font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Contact</a>
+              <Link to="/products" className="w-11/12 text-center nav-link px-4 py-3 rounded-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-md hover:from-blue-500 hover:to-cyan-400 transition-all duration-300" onClick={()=>setNavOpen(false)}>Our Products</Link>
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+                className="mt-2 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-cyan-200 dark:hover:bg-cyan-800 shadow transition-colors duration-300"
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
-              
-              <button className="magnetic-btn bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 transform hover:scale-105">
-                View Products
-              </button>
             </div>
-          </div>
+          )}
         </nav>
       </header>
 
