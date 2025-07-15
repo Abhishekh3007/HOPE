@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  cursor: none;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Animations */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3D Hero Animations */
+@keyframes float-3d {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(-15deg) rotateY(5deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotateX(-10deg) rotateY(-5deg); 
+  }
+}
+
+@keyframes float-icon {
+  0%, 100% { 
+    transform: translateY(0px) rotateY(15deg) rotateX(10deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotateY(-15deg) rotateX(-10deg); 
+  }
+}
+
+@keyframes float-sphere {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) scale(1); 
+  }
+  33% { 
+    transform: translateY(-20px) translateX(10px) scale(1.1); 
+  }
+  66% { 
+    transform: translateY(10px) translateX(-10px) scale(0.9); 
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.1); 
+  }
+}
+
+/* Utility Classes */
+.animate-float-gentle {
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-float-3d {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
+.animate-float-icon {
+  animation: float-icon 4s ease-in-out infinite;
+}
+
+.animate-float-sphere {
+  animation: float-sphere 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* 3D Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotateX-15 {
+  transform: rotateX(-15deg);
+}
+
+.rotateY-15 {
+  transform: rotateY(15deg);
+}
+
+.rotateY-minus-15 {
+  transform: rotateY(-15deg);
+}
+
+.rotateY-5 {
+  transform: rotateY(5deg);
+}
+
+.rotateY-minus-10 {
+  transform: rotateY(-10deg);
+}
+
+.rotateX-5 {
+  transform: rotateX(5deg);
+}
+
+.rotateX-10 {
+  transform: rotateX(10deg);
+}
+
+.rotateX-15 {
+  transform: rotateX(15deg);
+}
+
+/* 3D Transform Utilities */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Enhanced Chatbot Animations */
+@keyframes chatbot-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+}
+
+.animate-chatbot-bounce {
+  animation: chatbot-bounce 2s ease-in-out infinite;
+}
+
+/* 3D Card Hover Effects */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+}
+
+/* Magnetic Button Effect */
+.magnetic-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 245, 255, 0.3);
+}
+
+/* Enhanced Spin Animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
