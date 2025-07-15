@@ -13,21 +13,10 @@ const App = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
-    const cursor = document.getElementById('custom-cursor');
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      }
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    const cursor = document.getElementById('custom-cursor');
-    if (cursor) {
-      cursor.style.background = darkMode ? '#fff' : '#000';
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
 
@@ -52,13 +41,11 @@ const App = () => {
   };
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
+    setDarkMode((prev) => !prev);
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-500 cursor-none ${darkMode ? 'dark bg-gray-900' : 'bg-white'}`}>
-      <div id="custom-cursor" style={{position:'fixed',width:12,height:12,borderRadius:'50%',pointerEvents:'none',zIndex:9999,transform:'translate(-50%,-50%)',background:darkMode?'#fff':'#000'}}></div>
+    <div className={`min-h-screen transition-all duration-500 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
       
       {/* Header */}
       <header className="sticky top-0 z-40 w-full">

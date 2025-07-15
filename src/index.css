@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  cursor: none;
-}
-
 body {
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
