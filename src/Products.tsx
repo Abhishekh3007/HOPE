@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Heart, MessageCircle, X, Send, Moon, Sun, Menu } from 'lucide-react';
 
 const Products = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([

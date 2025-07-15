@@ -3,7 +3,7 @@ import { Heart, Microscope, Building2, Moon, Sun, MessageCircle, X, Send, Menu }
 import { Link } from 'react-router-dom';
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([
