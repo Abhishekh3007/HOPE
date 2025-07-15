@@ -13,17 +13,23 @@ const App = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
+    const cursor = document.getElementById('custom-cursor');
     const handleMouseMove = (e: MouseEvent) => {
-      const cursor = document.querySelector('.custom-cursor') as HTMLElement;
       if (cursor) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
       }
     };
-
     document.addEventListener('mousemove', handleMouseMove);
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    const cursor = document.getElementById('custom-cursor');
+    if (cursor) {
+      cursor.style.background = darkMode ? '#fff' : '#000';
+    }
+  }, [darkMode]);
 
   const handleChatSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,9 +57,8 @@ const App = () => {
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${darkMode ? 'dark bg-gray-900' : 'bg-white'}`}>
-      {/* Custom Cursor */}
-      <div className="custom-cursor fixed w-5 h-5 rounded-full border-2 border-blue-400 bg-white/90 shadow-md pointer-events-none z-50" style={{boxShadow: '0 2px 8px 0 rgba(59,130,246,0.10)'}}></div>
+    <div className={`min-h-screen transition-all duration-500 cursor-none ${darkMode ? 'dark bg-gray-900' : 'bg-white'}`}>
+      <div id="custom-cursor" style={{position:'fixed',width:12,height:12,borderRadius:'50%',pointerEvents:'none',zIndex:9999,transform:'translate(-50%,-50%)',background:darkMode?'#fff':'#000'}}></div>
       
       {/* Header */}
       <header className="sticky top-0 z-40 w-full">
@@ -542,7 +547,7 @@ const App = () => {
                 </div>
                 <button
                   onClick={() => setChatOpen(false)}
-                  className="text-white hover:bg-white/20 p-2 rounded-full transition-all duration-300 hover:rotate-90 hover:scale-110"
+                  className="z-50 relative text-white hover:bg-white/20 p-2 rounded-full transition-all duration-300 hover:rotate-90 hover:scale-110"
                 >
                   <X className="w-5 h-5" />
                 </button>
